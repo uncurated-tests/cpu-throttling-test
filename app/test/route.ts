@@ -34,15 +34,15 @@ export async function GET() {
       const url = `https://${host}${path}`;
       const before = Date.now();
       // Serialize to avoid interference.
-      await fetch(url, {
+      const res = await fetch(url, {
         cache: 'no-store',
-      }).then((res) => {
-        data[host][path] = {
-          duration: Date.now() - before,
-          status: res.status,
-        };
-        console.log(url, res.status);
       });
+      await res.text();
+      data[host][path] = {
+        duration: Date.now() - before,
+        status: res.status,
+      };
+      console.log(url, res.status);
     }
   }
   return NextResponse.json(data);

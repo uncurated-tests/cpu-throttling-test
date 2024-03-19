@@ -8,6 +8,13 @@ export default async function Page({
 }) {
   const category = await getCategory({ slug: params.categorySlug });
 
+  const before = Date.now();
+  while (true) {
+    if (Date.now() - before > 1000) {
+      break;
+    }
+  }
+
   return (
     <div className="space-y-4">
       <h1 className="text-xl font-medium text-gray-400/80">

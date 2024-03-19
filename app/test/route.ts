@@ -35,7 +35,9 @@ export async function GET() {
       const url = `https://${host}${path}`;
       const before = Date.now();
       promises.push(
-        fetch(url).then((res) => {
+        fetch(url, {
+          cache: 'no-store',
+        }).then((res) => {
           data[host][path] = {
             duration: Date.now() - before,
             status: res.status,

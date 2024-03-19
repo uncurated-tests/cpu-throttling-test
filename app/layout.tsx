@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Next.js App Router',
+    default: 'CPU test',
     template: '%s | Next.js App Router',
   },
   description:

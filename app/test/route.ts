@@ -18,7 +18,6 @@ const paths = [
 ];
 
 export async function GET() {
-  const promises = [];
   const data: Record<
     string,
     Record<
@@ -34,19 +33,17 @@ export async function GET() {
     for (const path of paths) {
       const url = `https://${host}${path}`;
       const before = Date.now();
-      promises.push(
-        fetch(url, {
-          cache: 'no-store',
-        }).then((res) => {
-          data[host][path] = {
-            duration: Date.now() - before,
-            status: res.status,
-          };
-          console.log(url, res.status);
-        }),
-      );
+      // Serialize to avoid interference.
+      await fetch(url, {
+        cache: 'no-store',
+      }).then((res) => {
+        data[host][path] = {
+          duration: Date.now() - before,
+          status: res.status,
+        };
+        console.log(url, res.status);
+      });
     }
   }
-  await Promise.all(promises);
   return NextResponse.json(data);
 }

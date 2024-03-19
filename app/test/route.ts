@@ -25,6 +25,7 @@ export async function GET() {
       {
         duration: number;
         status: number;
+        serverTiming: string | null;
       }
     >
   > = {};
@@ -36,11 +37,16 @@ export async function GET() {
       // Serialize to avoid interference.
       const res = await fetch(url, {
         cache: 'no-store',
+        headers: {
+          'x-vercel-debug-proxy-timing': '1',
+        },
       });
+      const serverTiming = res.headers.get('server-timing');
       await res.text();
       data[host][path] = {
         duration: Date.now() - before,
         status: res.status,
+        serverTiming,
       };
       console.log(url, res.status);
     }

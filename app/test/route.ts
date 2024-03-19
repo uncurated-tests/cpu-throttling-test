@@ -15,6 +15,7 @@ const paths = [
   '/ssr/1',
   '/styling/css-modules',
   '/layouts/electronics',
+  '/layouts/clothing',
 ];
 
 export async function GET() {

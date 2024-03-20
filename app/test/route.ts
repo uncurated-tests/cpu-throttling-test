@@ -14,8 +14,7 @@ const paths = [
   '/streaming/node/product/1',
   '/ssr/1',
   '/styling/css-modules',
-  '/layouts/electronics',
-  '/layouts/clothing',
+  '/layouts/books',
 ];
 
 export async function GET() {

@@ -9,8 +9,12 @@ export default async function Page({
   const category = await getCategory({ slug: params.categorySlug });
 
   const before = Date.now();
-  while (true) {
-    if (Date.now() - before > 1000) {
+  const array = [];
+  for (let i = 0; i < 100000000; i++) {
+    array.push(i);
+    if (Date.now() === 0) {
+      // Make this hard to optimize
+      array.push(i);
       break;
     }
   }

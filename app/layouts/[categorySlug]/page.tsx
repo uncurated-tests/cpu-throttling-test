@@ -10,7 +10,7 @@ export default async function Page({
 
   const before = Date.now();
   const array = [];
-  for (let i = 0; i < 100000000; i++) {
+  for (let i = 0; i < 10000000; i++) {
     array.push(i);
     if (Date.now() === 0) {
       // Make this hard to optimize

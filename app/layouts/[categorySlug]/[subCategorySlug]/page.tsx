@@ -8,6 +8,17 @@ export default async function Page({
 }) {
   const category = await getCategory({ slug: params.subCategorySlug });
 
+  const before = Date.now();
+  const array = [];
+  for (let i = 0; i < 10000000; i++) {
+    array.push(i);
+    if (Date.now() === 0) {
+      // Make this hard to optimize
+      array.push(i);
+      break;
+    }
+  }
+
   return (
     <div className="space-y-4">
       <h1 className="text-xl font-medium text-gray-400/80">{category.name}</h1>
